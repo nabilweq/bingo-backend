@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const WasteSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
     required: true
   },
-  categpry: {
+  category: {
     type: String, //[ 'E-waste', 'Plastic waste', 'Metal waste', 'Food waste', 'Paper waste' ]
     required: true
   },
