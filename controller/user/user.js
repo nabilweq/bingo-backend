@@ -14,10 +14,10 @@ module.exports.addWaste = async (req, res) => {
             "location": req.body.location,
             "address": req.body.address,
             createdOn: getDate(),
-            "price": 500
+            "price": req.body.price
         })
 
-        await newWaste.save();
+        //await newWaste.save();
 
         res.status(200).json({
             success: true,
