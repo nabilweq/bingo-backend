@@ -2,7 +2,7 @@ const Waste = require('../../models/Waste');
 
 module.exports.getRequests = async (req, res) => {
     try {
-        const wastes = await Waste.find({ status: "Recieved" });
+        const wastes = await Waste.find({ status: "Recieved" }).populate('userId', ['name', 'email', 'phone', 'address']);
 
         return res.status(200).json({
             success: true,
@@ -19,7 +19,7 @@ module.exports.getRequests = async (req, res) => {
 
 module.exports.history = async (req, res) => {
     try {
-        const wastes = await Waste.find({ status: "Recieved" });
+        const wastes = await Waste.find({ status: "Recieved" }).populate('userId', ['name', 'email', 'phone', 'address']);
 
         return res.status(200).json({
             success: true,
