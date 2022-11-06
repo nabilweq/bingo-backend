@@ -3,7 +3,6 @@ const User = require('../../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-
 module.exports.signup = async (req, res) => {
     try {
         const user = await User.findOne({email: req.body.email});
@@ -51,7 +50,10 @@ module.exports.login = async (req, res) => {
 
         const isMatch = await bcrypt.compare(req.body.password, user.password);
         if (!isMatch) {
-            return res.status(401).json({success: false, "message": "Invalid credentials" });
+            return res.status(401).json({
+                success: false, 
+                message: "Invalid credentials" 
+            });
         }
 
         const payload = {

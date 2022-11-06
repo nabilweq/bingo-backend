@@ -14,13 +14,13 @@ module.exports.addWaste = async (req, res) => {
         await newWaste.save();
 
         res.status(200).json({
-            status: true,
+            success: true,
             message: "Waste added successfully",
             data: await newWaste.populate('userId', ['name', 'email', 'phone', 'address'])
         })
     } catch (err) {
         res.status(500).json({
-            status: false,
+            success: false,
             message: err.message
         })
     }
@@ -40,13 +40,13 @@ module.exports.cancelWaste = async (req, res) => {
         await waste.save();
 
         res.status(200).json({
-            status: true,
+            success: true,
             message: "Waste cancelled successfully",
             data: await waste.populate('userId', ['name', 'email', 'phone', 'address'])
         })
     } catch (err) {
         res.status(500).json({
-            status: false,
+            success: false,
             message: err.message
         })
     }
@@ -57,13 +57,13 @@ module.exports.pendingWastes = async (req, res) => {
         const wastes = await Waste.find({ status: {$in: ['Pending', 'Cancelled']} }); //{ userId: req.user.id }
 
         res.status(200).json({
-            status: true,
+            success: true,
             message: "pending wastes fetched successfully",
             data: wastes
         })
     } catch (err) {
         res.status(500).json({
-            status: false,
+            success: false,
             message: err.message
         })
     }
@@ -74,13 +74,13 @@ module.exports.getWaste = async (req, res) => {
         const waste = await Waste.findOne({ _id: req.params.id }); //{ userId: req.user.id }
 
         res.status(200).json({
-            status: true,
+            success: true,
             message: "waste fetched successfully",
             data: waste
         })
     } catch (err) {
         res.status(500).json({
-            status: false,
+            success: false,
             message: err.message
         })
     }
@@ -91,13 +91,13 @@ module.exports.history = async (req, res) => {
         const wastes = await Waste.find(); //{ userId: req.user.id }
 
         res.status(200).json({
-            status: true,
+            success: true,
             message: "wastes fetched successfully",
             data: wastes
         })
     } catch (err) {
         res.status(500).json({
-            status: false,
+            success: false,
             message: err.message
         })
     }

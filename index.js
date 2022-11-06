@@ -26,8 +26,6 @@ app.get('/', (req, res, ) => {
     res.send('API of GoBin is running successfully');
 });
 
-//Auth Routes
-app.use('/api/auth', require('./routes/auth'));
 
 // Define Routes
 app.use('/api/v1', require('./routes/index'));
