@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
     type: String, //[ 'E-waste', 'Plastic waste', 'Metal waste', 'Food waste', 'Paper waste' ]
     required: true
   },
+  role: {
+    type: String, //[ 'user', 'collector' ]
+    required: true
+  },
   email: {
     type: String,
     required: true
@@ -15,11 +19,17 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    default: ""
+    required: true
   },
   address: {
     type: String,
     required: true
+  },
+  resetPasswordToken: {
+    type: String,
+  },
+  resetPasswordExpires: {
+    type: Date
   }
 });
 

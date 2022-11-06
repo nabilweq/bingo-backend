@@ -2,13 +2,18 @@ const Waste = require('../../models/Waste');
 
 module.exports.addWaste = async (req, res) => {
     try {
+
+        let today = new Date();
+
         const newWaste =  new Waste({
             "userId": "636690411797d1b1300873b9",
             "items": req.body.items,
             "slot": req.body.slot,
             "collector": "test-text",
             "location": req.body.location,
-            "address": req.body.address
+            "address": req.body.address,
+            createdOn: today.toLocaleString("en-US", "Asia/Kolkata"),
+            "price": 500
         })
 
         await newWaste.save();

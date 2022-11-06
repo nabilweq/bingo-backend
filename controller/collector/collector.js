@@ -1,5 +1,25 @@
 const Waste = require('../../models/Waste');
 
+module.exports.getRequests = async (req, res) => {
+
+}
+
+module.exports.history = async (req, res) => {
+    
+}
+
+module.exports.accept = async (req, res) => {
+    
+}
+
+module.exports.getRequests = async (req, res) => {
+    
+}
+
+module.exports.getRequests = async (req, res) => {
+    
+}
+
 module.exports.markCompleted = async (req, res) => {
     try {
         const waste = await Waste.findById(req.body.id);

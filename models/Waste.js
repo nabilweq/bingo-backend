@@ -38,6 +38,14 @@ const WasteSchema = new mongoose.Schema({
   status: {
     type: String,
     default: "Recieved" //[ 'Pending', 'Cancelled', 'Rejected', 'Completed' ]
+  },
+  createdOn: {
+    type: Date,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
   }
 });
 

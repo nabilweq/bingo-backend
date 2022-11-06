@@ -20,14 +20,14 @@ module.exports.signup = async (req, res) => {
             phone: req.body.phone,
             password: password,
             address: req.body.address,
-            role: "user"
+            role: "collector"
         })
 
         await newUser.save();
 
         return res.status(200).json({
             success: true,
-            message: "User created successfully",
+            message: "Collector created successfully",
             data: newUser
         })
     } catch (err) {
@@ -41,11 +41,11 @@ module.exports.signup = async (req, res) => {
 
 module.exports.login = async (req, res) => {
     try {
-        const user = await User.findOne({email: req.body.email, role: "user"});
+        const user = await User.findOne({email: req.body.email, role: "collector"});
         if(!user) {
             return res.status(400).json({
                 success: false,
-                message: "User doesn't exist with given email id"
+                message: "Collector doesn't exist with given email id"
             })
         }
 
@@ -71,7 +71,7 @@ module.exports.login = async (req, res) => {
               if (err) throw err;
               return res.status(200).json({
                 success: true,
-                message: "User signed in successfully",
+                message: "Collector signed in successfully",
                 data: user,
                 token
               })
