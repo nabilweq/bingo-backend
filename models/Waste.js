@@ -6,6 +6,11 @@ const WasteSchema = new mongoose.Schema({
     ref: 'user',
     required: true
   },
+  orderId: {
+    type: String,
+    required: true,
+    unique: true
+  },
   items: [{
     category: {
       type: String, //[ 'E-waste', 'Plastic waste', 'Metal waste', 'Food waste', 'Paper waste' ]
@@ -25,8 +30,8 @@ const WasteSchema = new mongoose.Schema({
     default: ""
   },
   collector: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
   },
   location: {
     type: String,
@@ -40,7 +45,7 @@ const WasteSchema = new mongoose.Schema({
     default: "Recieved" //[ 'Pending', 'Cancelled', 'Rejected', 'Completed' ]
   },
   createdOn: {
-    type: Date,
+    type: String,
     required: true
   },
   price: {

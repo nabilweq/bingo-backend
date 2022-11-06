@@ -1,18 +1,19 @@
 const Waste = require('../../models/Waste');
 
+const { getOrderId } = require('../../utils/getOrderId');
+const { getDate } = require('../../utils/getDate')
+
 module.exports.addWaste = async (req, res) => {
     try {
 
-        let today = new Date();
-
         const newWaste =  new Waste({
             "userId": "636690411797d1b1300873b9",
+            "orderId": "BG-"+await getOrderId(),
             "items": req.body.items,
             "slot": req.body.slot,
-            "collector": "test-text",
             "location": req.body.location,
             "address": req.body.address,
-            createdOn: today.toLocaleString("en-US", "Asia/Kolkata"),
+            createdOn: getDate(),
             "price": 500
         })
 
@@ -59,7 +60,7 @@ module.exports.cancelWaste = async (req, res) => {
 
 module.exports.pendingWastes = async (req, res) => {
     try {
-        const wastes = await Waste.find({ status: {$in: ['Pending', 'Cancelled']} }); //{ userId: req.user.id }
+        const wastes = await Waste.find({ status: {$in: ['Pending', 'Recieved']} }); //{ userId: req.user.id }
 
         res.status(200).json({
             success: true,
